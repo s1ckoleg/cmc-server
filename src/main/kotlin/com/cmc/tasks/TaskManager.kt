@@ -34,9 +34,9 @@ class TaskManager(
     /**
      * Starts the coin data fetch task.
      * 
-     * @param fetchInterval The interval between fetches, defaults to 5 minutes.
+     * @param fetchInterval The interval between fetches, defaults to 10 minutes.
      */
-    fun startCoinDataFetchTask(fetchInterval: Duration = Duration.ofMinutes(5)) {
+    fun startCoinDataFetchTask(fetchInterval: Duration = Duration.ofMinutes(10)) {
         logger.info("Starting coin data fetch task")
         
         coinDataFetchTask = CoinDataFetchTask(
