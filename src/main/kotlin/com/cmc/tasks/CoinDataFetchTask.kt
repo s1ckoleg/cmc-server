@@ -73,7 +73,6 @@ class CoinDataFetchTask(
     
     /**
      * Fetches coin data from external API and updates the CoinStats table.
-     * This is where you'll implement your API integration logic.
      */
     private suspend fun fetchAndUpdateCoinData() {
         try {
