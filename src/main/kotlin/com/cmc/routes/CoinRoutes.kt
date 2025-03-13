@@ -4,6 +4,8 @@ import com.cmc.database.services.CoinService
 import com.cmc.database.services.CoinStatsService
 import com.cmc.models.Coin
 import com.cmc.models.CoinWithStats
+import com.cmc.models.CoinHistoryEntry
+import com.cmc.models.CoinHistoryResponse
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
@@ -158,19 +160,16 @@ fun Application.coinRoutes(
                 val statsHistory = coinStatsService.getStatsByCoinIdAndDateRange(id, fromDate, toDate)
                 
                 // Map the stats to a simplified format for the response
-                val historyResponse = statsHistory.map { stats ->
-                    mapOf(
-                        "date" to stats.date.toString(),
-                        "price" to stats.currentPrice,
-                        "marketCap" to stats.marketCap,
-                        "volume" to stats.volume24h
+                val history = statsHistory.map { stats ->
+                    CoinHistoryEntry(
+                        date = stats.date,
+                        price = stats.currentPrice,
+                        marketCap = stats.marketCap,
+                        volume = stats.volume24h
                     )
                 }
                 
-                call.respond(mapOf(
-                    "coin" to coin,
-                    "history" to historyResponse
-                ))
+                call.respond(CoinHistoryResponse(coin = coin, history = history))
             }
             
             // Get coin by ticker with its latest stats

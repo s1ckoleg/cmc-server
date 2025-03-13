@@ -31,5 +31,5 @@ data class PortfolioEntry(
     @Serializable(with = BigDecimalSerializer::class)
     val profitLossPercentage: BigDecimal? = null,
     @Serializable(with = BigDecimalSerializer::class)
-    val totalValue: BigDecimal
+    val totalValue: BigDecimal? = null
 ) 
