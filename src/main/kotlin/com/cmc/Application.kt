@@ -62,10 +62,6 @@ fun Application.module() {
                 it[ticker] = "ALPH"
                 it[name] = "Alephium"
             }
-            Coins.insert {
-                it[ticker] = "NEXA"
-                it[name] = "Nexa"
-            }
         }
     }
     
